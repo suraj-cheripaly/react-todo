@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import React from "react";
 import Task from "../../components/Task/Task";
 
@@ -14,7 +15,7 @@ const Tasks = ({ data, setTasks, setEditId }) => {
       ))}
     </>
   ) : (
-    "no tasks added"
+    <Typography>no tasks added</Typography>
   );
 };
 

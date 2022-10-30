@@ -1,12 +1,20 @@
 import React, { useEffect } from "react";
 import { Button, Grid, TextField } from "@mui/material";
 import styled from "styled-components";
+import AddIcon from '@mui/icons-material/Add';
 
 const Wrapper = styled(Grid)`
   padding-bottom: 25px;
 `;
 
-const UserInput = ({ userInput, setUserInput, setTasks, tasks, editId }) => {
+const UserInput = ({
+  userInput,
+  setUserInput,
+  setTasks,
+  tasks,
+  editId,
+  setEditId,
+}) => {
   const editData = tasks.find((obj) => obj.id === editId);
 
   useEffect(() => {
@@ -17,11 +25,18 @@ const UserInput = ({ userInput, setUserInput, setTasks, tasks, editId }) => {
     }
   }, [editData, setUserInput, tasks]);
 
-  console.log(tasks);
-
   const addTasks = () => {
-    setTasks([...tasks, { id: Date.now(), input: userInput.input }]);
-    setUserInput({ ...tasks, input: "" });
+    if (editId) {
+      const check = tasks.map((obj) =>
+        obj.id === editId ? { id: editId, input: userInput.input } : obj
+      );
+      setTasks(check);
+      setEditId(null);
+      setUserInput({ ...tasks, input: "" });
+    } else {
+      setTasks([...tasks, { id: Date.now(), input: userInput.input }]);
+      setUserInput({ ...tasks, input: "" });
+    }
   };
 
   return (
@@ -44,8 +59,8 @@ const UserInput = ({ userInput, setUserInput, setTasks, tasks, editId }) => {
         <Button
           variant="contained"
           fullWidth
-          // disabled={userInput.input.length === 0}
           onClick={() => userInput.input.length > 0 && addTasks()}
+          startIcon={<AddIcon />}
         >
           Add Task
         </Button>

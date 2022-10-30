@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Tasks from "./components/Tasks/Tasks";
 import UserInput from "./components/UserInput/UserInput";
 import styled from "styled-components";
@@ -13,10 +13,15 @@ const Wrapper = styled(Grid)`
 const App = () => {
   const [userInput, setUserInput] = useState({
     input: "",
-    id: Date.now(),
+    id: null,
   });
-  const [tasks, setTasks] = useState([]);
+  const initialState = JSON.parse(localStorage.getItem("tasksdata")) || [];
+  const [tasks, setTasks] = useState(initialState);
   const [editId, setEditId] = useState(null);
+
+  useEffect(() => {
+    localStorage.setItem("tasksdata", JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <Grid container justifyContent="center">

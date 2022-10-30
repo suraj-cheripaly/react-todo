@@ -32,9 +32,9 @@ const Task = ({ data, tasksData, setTasks, setEditId }) => {
         <TypoWrapper variant="h6">{data.input}</TypoWrapper>
       </TextWrapper>
       <Grid item xs={3}>
-        {/* <Button onClick={() => setEditId(data.id)}>
+        <Button onClick={() => setEditId(data.id)}>
           <EditIcon />
-        </Button> */}
+        </Button>
         <Button onClick={deleteTask}>
           <DeleteIcon />
         </Button>

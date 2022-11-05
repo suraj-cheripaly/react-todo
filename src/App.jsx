@@ -28,7 +28,7 @@ const App = () => {
       <Grid item xs={12}>
         <NavBar />
       </Grid>
-      <Wrapper item xs={7}>
+      <Wrapper item md={7} xs={12}>
         <UserInput
           userInput={userInput}
           setUserInput={setUserInput}

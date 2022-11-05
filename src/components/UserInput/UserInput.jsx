@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Button, Grid, TextField } from "@mui/material";
 import styled from "styled-components";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
 
 const Wrapper = styled(Grid)`
   padding-bottom: 25px;
@@ -41,8 +41,8 @@ const UserInput = ({
 
   return (
     <Wrapper container spacing={1} justifyItems="center" alignItems="center">
-      <Grid item xs={2} />
-      <Grid item xs={6}>
+      <Grid item md={2} />
+      <Grid item md={6} xs={8}>
         <TextField
           size="small"
           placeholder="add task here ..."
@@ -55,7 +55,7 @@ const UserInput = ({
           value={userInput.input}
         />
       </Grid>
-      <Grid item xs={2}>
+      <Grid item md={2} xs={3}>
         <Button
           variant="contained"
           fullWidth

@@ -1,11 +1,12 @@
 import React from "react";
-import { Grid, Button, Typography } from "@mui/material";
+import { Grid, Button, Typography, useMediaQuery } from "@mui/material";
 import styled from "styled-components";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import { useTheme } from "@mui/material/styles";
 
 const Wrapper = styled(Grid)`
-  padding: 5px 150px;
+  padding: ${(props) => (props.isMobile ? "5px 150px" : "5px 10px")};
 `;
 
 const TextWrapper = styled(Grid)`
@@ -22,16 +23,19 @@ const TypoWrapper = styled(Typography)`
 `;
 
 const Task = ({ data, tasksData, setTasks, setEditId }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.up("md"));
+
   const deleteTask = () => {
     setTasks(tasksData.filter((obj) => obj.id !== data.id));
   };
 
   return (
-    <Wrapper container justifyContent="space-between">
-      <TextWrapper item xs={9}>
+    <Wrapper isMobile={isMobile} container justifyContent="space-between">
+      <TextWrapper item md={9} xs={7}>
         <TypoWrapper variant="h6">{data.input}</TypoWrapper>
       </TextWrapper>
-      <Grid item xs={3}>
+      <Grid item md={3} xs={5}>
         <Button onClick={() => setEditId(data.id)}>
           <EditIcon />
         </Button>
